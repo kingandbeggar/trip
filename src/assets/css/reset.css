@@ -1,3 +1,6 @@
+html {
+  line-height: 1.2;
+}
 body, ul, li {
   margin: 0;
   padding: 0;

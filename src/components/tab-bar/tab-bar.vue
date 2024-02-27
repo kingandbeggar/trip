@@ -7,7 +7,7 @@
         <span>{{ item.name }}</span>
       </div>
     </template> -->
-    <van-tabbar v-model="currentIndex" active-color="#ff9854">
+    <van-tabbar v-model="currentIndex" active-color="#ff9854" route>
       <template v-for="item,index in tabbarData" :key="item">
         <van-tabbar-item :to="item.path">
           <!-- 相当于放到了默认插槽 
@@ -32,12 +32,19 @@
 
 <script setup>
 
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import tabbarData from "@/assets/data/tabbar"
 import {getAssetsUrl} from "@/utils/load_assets"
-
+import { useRoute } from "vue-router";
+const route = useRoute()
 const currentIndex = ref(0)
 
+//手动输入path监听变化然后改tababr active图片
+watch(route, (newvalue) => {
+  let index = tabbarData.findIndex(item => item.path === newvalue.path)
+  if(!index) return
+  currentIndex.value = index
+})
 </script>
 
 <style lang="less" scoped>

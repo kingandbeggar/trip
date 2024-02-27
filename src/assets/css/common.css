@@ -1,7 +1,31 @@
 :root {
   --primary-color: #ff9854;
+  --van-search-left-icon-color: var(--primary-color) !important;
+  --theme-linear-color: linear-gradient(90deg, #fa8c1d, #fcaf3f);
 }
 
 body {  
   font-size: 14px;
+}
+
+/* 隐藏底部tabbar
+  方法一：在app.vue判断route.meta.hideTabbar 动态显示/隐藏tababr
+  方法二：谁要隐藏给谁加个class， 缺点：滑倒底部一直往上滑会看到tabbar 
+*/
+.hideTabbar {
+  position: relative;
+  z-index: 9;
+  background: #fff;
+  overflow-y: auto;
+}
+.ellipsi {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 显示的行数 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
